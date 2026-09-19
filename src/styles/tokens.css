@@ -1,0 +1,61 @@
+:root {
+  /* Artboard 1920×917 — 120 × 57.3125 rem @ 16px (same as waypoint-origin) */
+  --canvas-w: 120rem;
+  --canvas-h: 57.3125rem;
+  --sans: Inter, system-ui, 'Segoe UI', sans-serif;
+  --bg: #fff;
+}
+
+html {
+  font-size: 16px;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-x pan-y;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--sans);
+  background: #fff;
+  color: #08060d;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+.app-shell {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.luna-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Fixed artboard height — blank white stage */
+.luna-canvas-row {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  height: var(--canvas-h);
+  max-height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
