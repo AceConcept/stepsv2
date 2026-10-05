@@ -1,13 +1,13 @@
 /**
  * Document rem scaler — same contain style as waypoint-origin.
- * Design artboard: 1920×917 (120 × 57.3125 rem @ 16px).
+ * Design artboard: 1920×920 (120 × 57.5 rem @ 16px).
  */
 
 export const DESIGN_ROOT_PX = 16
 export const DESIGN_REM_W = 120
-export const DESIGN_REM_H = 57.3125
+export const DESIGN_REM_H = 57.5
 export const CANVAS_W = DESIGN_REM_W * DESIGN_ROOT_PX // 1920
-export const CANVAS_H = DESIGN_REM_H * DESIGN_ROOT_PX // 917
+export const CANVAS_H = DESIGN_REM_H * DESIGN_ROOT_PX // 920
 
 const SCALE_ATTR = 'data-luna-scale'
 const SCALED_CLASS = 'luna-document-scaled'

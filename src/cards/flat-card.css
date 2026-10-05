@@ -1,0 +1,172 @@
+/* Flat card — archived snapshot (see flat-card.js). Not imported by the live app. */
+
+.step-card-row {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+  transform: translate(-50%, -50%);
+}
+
+.step-card-wrap {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem; /* 8px from card */
+}
+
+.step-card-side {
+  flex-shrink: 0;
+  width: 0.6875rem; /* 11px */
+  height: 16.75rem; /* 268px — match card */
+  position: relative;
+  background: #080808;
+}
+
+.step-card-side::before,
+.step-card-side::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  width: 0.3125rem; /* 5px */
+  height: 0.3125rem; /* 5px */
+  margin: 0 auto;
+  background: #fff;
+}
+
+.step-card-side::before {
+  top: 0;
+}
+
+.step-card-side::after {
+  bottom: 0;
+}
+
+.step-card-side-track {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.step-card-side-graph {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  display: block;
+  width: 0.6875rem; /* 11px */
+  height: 4.0625rem; /* 65px */
+  pointer-events: none;
+  user-select: none;
+  animation: step-card-side-slide 6s linear infinite;
+}
+
+@keyframes step-card-side-slide {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    /* side bar height + graph height */
+    transform: translateY(calc(-16.75rem - 100%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-card-side-graph {
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    animation: none;
+  }
+}
+
+.step-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 28.75rem; /* 460px */
+  height: 16.75rem; /* 268px */
+  overflow: hidden;
+  border-radius: 0.625rem; /* 10px */
+  background-color: #141414;
+  background-image: url('/assets/d-card/card-bg.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  color: #fff;
+}
+
+.step-card-bars {
+  position: absolute;
+  left: 1.3125rem; /* matches .step-card-body */
+  top: 50%;
+  z-index: 2;
+  display: block;
+  width: 9.0625rem; /* 145px */
+  height: 0.6875rem; /* 11px */
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.step-card-body {
+  position: absolute;
+  left: 1.3125rem; /* 21px */
+  bottom: 1.3125rem; /* 21px */
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.step-card-kicker {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0;
+  text-align: left;
+  color: #fff;
+}
+
+.step-card-title {
+  margin: 0.2rem 0 0;
+  font-family: var(--display);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0;
+  text-align: left;
+  color: #fff;
+}
+
+.step-card-graphic {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  z-index: 2;
+  width: 12rem;
+  height: 12rem;
+  margin-top: -6rem;
+  pointer-events: none;
+}
+
+.step-card-num {
+  position: absolute;
+  right: -0.6rem;
+  bottom: 3.35rem;
+  font-family: var(--harmony);
+  font-size: 4.1875rem; /* 67px */
+  font-weight: 700; /* Bold */
+  line-height: normal;
+  letter-spacing: 0;
+  text-align: right;
+  white-space: nowrap;
+  color: #424242;
+  text-shadow:
+    -0.058125rem -0.058125rem 0 rgba(114, 114, 114, 0.8), /* -0.93 -0.93 #727272 @ 80% */
+    0.058125rem 0.058125rem 0 #000; /* 0.93 0.93 #000 @ 100% */
+}

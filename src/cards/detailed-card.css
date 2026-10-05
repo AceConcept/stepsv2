@@ -1,0 +1,29 @@
+/* Detailed card styles — import only when previewing detailedCardMarkup */
+
+.step-card--detailed {
+  background-image: url('/assets/d-card/2nd-crd-bg.png?v=2');
+}
+
+.step-card-lined {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 28.75rem; /* 460px — match card */
+  height: 5.9375rem; /* 95px */
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.step-card-pixel {
+  position: absolute;
+  top: 50%;
+  right: -8.6875rem;
+  z-index: 1;
+  width: 22.875rem; /* 366px */
+  height: 22.875rem; /* 366px */
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
