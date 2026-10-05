@@ -23,6 +23,16 @@ function tickMarkup() {
 
 const pad2 = (n) => String(n).padStart(2, '0')
 
+/** Waypoint shell protocol (parent page ↔ this app when embedded in an iframe). */
+const PARENT_SET_STEP = 'atencium-set-step'
+const PARENT_REQUEST_STEP = 'atencium-request-step'
+const PARENT_STEP_CHANGED = 'atencium-step-changed'
+
+function notifyParentStep(step) {
+  if (window.parent === window) return
+  window.parent.postMessage({ type: PARENT_STEP_CHANGED, step }, '*')
+}
+
 /** Infinite column: 3 identical sets; the active card always settles in the middle one. */
 const CARD_SETS = 3
 const MIDDLE_SET = 1
@@ -214,14 +224,29 @@ function bindStepSwitcher() {
     cardRow.classList.remove('is-snapping')
   }
 
-  const moveBy = (delta) => {
+  const moveBy = (delta, { notify = true } = {}) => {
+    if (!delta) return
     recentre()
     slot += delta
     active = ((slot % n) + n) % n
     render()
+    if (notify) notifyParentStep(active + 1)
   }
 
   render()
+
+  window.addEventListener('message', (e) => {
+    if (e.source !== window.parent || window.parent === window) return
+    const type = e.data?.type
+    if (type === PARENT_REQUEST_STEP) {
+      notifyParentStep(active + 1)
+      return
+    }
+    if (type !== PARENT_SET_STEP) return
+    const target = Number(e.data.step) - 1
+    if (!Number.isInteger(target) || target < 0 || target >= n) return
+    moveBy(target - active, { notify: false })
+  })
 
   cardStack?.addEventListener('transitionend', (e) => {
     if (e.target === cardStack && e.propertyName === 'transform') recentre()
